@@ -1,6 +1,6 @@
 from pathlib import Path
 import csv
-file_path= Path(r"c:\Users\cjiah\FJ3\csv_reports\profit&loss.csv")
+file_path= Path(r"c:\Users\Public\FJ3\csv_reports\profit&loss.csv")
 # print(file_path.exists())
 with file_path.open(mode="r", encoding="UTF-8", newline="") as file:
     reader = csv.reader(file)
