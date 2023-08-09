@@ -19,15 +19,16 @@ def cash():
 
     cash_deficit = [value for value in cash_difference if value < 0]
     cash_surplus = [value for value in cash_difference if value > 0]
-
+    output = ""
     if cash_deficit:
         for deficit in cash_deficit:
             deficit_index = cash_difference.index(deficit)
             deficit_day = cash_on_hand[deficit_index + 1][0]
-            print(f"[CASH DEFICIT] DAY: {deficit_day}, AMOUNT: USD{abs(deficit)}")
+            output += f"[CASH DEFICIT] DAY: {deficit_day}, AMOUNT: USD{abs(deficit)}\n"
     else:
         for surplus in cash_surplus:
             highest_surplus = max(cash_surplus)
             highest_surplus_index = cash_surplus.index(highest_surplus)
             highest_surplus_day = cash_on_hand[highest_surplus_index + 1][0]
-            print(f" [CASH SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY \n [HIGHEST CASH SURPLUS] DAY: {highest_surplus_day}, AMOUNT: {highest_surplus}")
+            output += f" [CASH SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY \n [HIGHEST CASH SURPLUS] DAY: {highest_surplus_day}, AMOUNT: {highest_surplus}"
+    return output

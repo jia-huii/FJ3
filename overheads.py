@@ -67,4 +67,4 @@ def overhead():
     highest_percent = max(percentages)
     highest_indexes = [i for i, percent in enumerate(percentages) if percent == highest_percent]
     highest_overhead = [overhead_type[i] for i in highest_indexes]
-    print(f"[HIGHEST OVERHEAD] {', '.join(highest_overhead)}: {highest_percent}%")
+    return f"[HIGHEST OVERHEAD] {', '.join(highest_overhead)}: {highest_percent}%"

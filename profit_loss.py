@@ -19,14 +19,16 @@ def profit_n_loss():
     profit_deficit = [value for value in profit_difference if value < 0]
     profit_surplus = [value for value in profit_difference if value > 0]
 
+    output = ""
     if profit_deficit:
         for deficit in profit_deficit:
             deficit_index = profit_difference.index(deficit)
             deficit_day = profit_and_loss[deficit_index + 1][0]
-            print(f"[PROFIT DEFICIT] DAY: {deficit_day}, AMOUNT: USD{abs(deficit)}")
+            output += f"[PROFIT DEFICIT] DAY: {deficit_day}, AMOUNT: USD{abs(deficit)}\n"
     else:
         for surplus in profit_surplus:
             highest_surplus = max(surplus)
             highest_surplus_index = profit_surplus.index(highest_surplus)
             highest_surplus_day = profit_and_loss[highest_surplus_index + 1][0]
-            print(f" [NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY \n [HIGHEST NET PROFIT SURPLUS] DAY: {highest_surplus_day}, AMOUNT: {highest_surplus}")
+            output += f" [NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY \n [HIGHEST NET PROFIT SURPLUS] DAY: {highest_surplus_day}, AMOUNT: {highest_surplus}"
+    return output

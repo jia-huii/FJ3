@@ -1,16 +1,13 @@
-import profit_loss
-import cash_on_hand
-import overheads
+import profit_loss, cash_on_hand, overheads
 
+def main():
+    """
+    """
+    overhead_output = overheads.overhead()
+    coh_output = cash_on_hand.cash()
+    pnl_output = profit_loss.profit_n_loss()
+    return overhead_output, coh_output, pnl_output
+overhead_output, coh_output, pnl_output = main()
 
-from pathlib import Path
-
-home = Path.home()
-# create a file path for summary_report.txt
-file_path= Path(r"C:\Users\Public\FJ3\summary_report.txt")
-file_path.touch()
-print(file_path.exists())
-# use mode= "w" to write data to summary_report.txt file
-with file_path.open(mode= "w", encoding= "UTF-8") as file:
-    # Write the output of each function to the file
-    file.writelines(f"{profit_loss.profit_n_loss()}\n {cash_on_hand.cash()}\n {overheads.overhead()}")
+with open("summary_report.txt", "w") as file:
+    file.write(f"{overhead_output}\n{coh_output}{pnl_output}")
