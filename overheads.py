@@ -2,17 +2,22 @@ def overhead():
     from pathlib import Path
     import csv
 
+    # Define the file path
     file_path= Path(r"c:\Users\Public\FJ3\csv_reports\overheads.csv")
-    # print(file_path.exists())
+
+    # Open and read the CSV file
     with file_path.open(mode="r", encoding="UTF-8", newline="") as file:
         reader = csv.reader(file)
         next(reader)
+        # Create an empty list, overheads and append only Day and Amount from CSV into it
         overheads= []
         for row in reader:
             overheads.append([row[1], float(row[3])])
 
+    # Calculate the total amount of overheads
     total_amount = sum(item[1] for item in overheads)
 
+    # Initialize variables to calculate individual overhead categories
     total_marketing = 0
     total_salary = 0
     total_rental = 0
@@ -26,6 +31,7 @@ def overhead():
     overflow_warehouse = 0
     total_oveflow = 0
 
+    # Calculate respective total for each overhead category
     for item in overheads:
         if item[0] == "Marketing Expense":
             total_marketing += item[1]
@@ -51,6 +57,7 @@ def overhead():
             overflow_warehouse += item[1]
         total_oveflow = overflow_retail + overflow_warehouse
 
+    # Calculate respective percentages for each expense category
     marketing_percent = round((total_marketing/ total_amount) * 100, 2)
     salary_percent = round((total_salary/ total_amount) * 100, 2)
     rental_percent = round((total_rental/ total_amount) * 100, 2)
@@ -62,9 +69,14 @@ def overhead():
     maintenance_percent = round((total_maintenance/ total_amount) * 100, 2)
     overflow_percent = round((total_oveflow/ total_amount) * 100, 2)
 
+    # Create lists for overhead types and their corresponding percentages
     overhead_type = ["MARKETING EXPENSE", "SALARY EXPENSE", "RENTAL EXPENSE", "SHIPPING EXPENSE", "DEPRECIATION EXPENSE", "INTEREST EXPENSE", "PENALTY EXPENSE", "HUMAN RESOURCE EXPENSE", "OVERFLOW EXPENSE"]
     percentages = [marketing_percent, salary_percent, rental_percent, shipping_percent, depreciation_percent, interest_percent, penalty_percent, HR_percent, maintenance_percent, overflow_percent]
+    
+    # Find the highest percentage and its corresponding overhead type
     highest_percent = max(percentages)
     highest_indexes = [i for i, percent in enumerate(percentages) if percent == highest_percent]
     highest_overhead = [overhead_type[i] for i in highest_indexes]
+    
+    # Return the formatted output
     return f"[HIGHEST OVERHEAD] {', '.join(highest_overhead)}: {highest_percent}%"
