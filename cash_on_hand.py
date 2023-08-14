@@ -39,6 +39,6 @@ def cash():
             highest_surplus = max(cash_surplus)
             highest_surplus_index = cash_surplus.index(highest_surplus)
             highest_surplus_day = cash_on_hand[highest_surplus_index + 1][0]
-            output += f" [CASH SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY \n [HIGHEST CASH SURPLUS] DAY: {highest_surplus_day}, AMOUNT: {highest_surplus}"
+            output += f" [CASH SURPLUS] CASH ON EACH DAY IS HIGHER THAN PREVIOUS DAY \n [HIGHEST CASH SURPLUS] DAY: {highest_surplus_day}, AMOUNT: {highest_surplus}"
     # Return the final output string
     return output
